@@ -5,23 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('.nav-link');
   const dropdownItems = document.querySelectorAll('.dropdown-item');
   const contentSections = document.querySelectorAll('.content-section');
-
+  
   // Mobile menu toggle
   hamburger.addEventListener('click', function() {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
-    
-    // Animate hamburger bars
-    const bars = hamburger.querySelectorAll('.bar');
-    if (hamburger.classList.contains('active')) {
-      bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-      bars[1].style.opacity = '0';
-      bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-    } else {
-      bars[0].style.transform = 'none';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = 'none';
-    }
   });
 
   // Close mobile menu when clicking outside
@@ -29,12 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
       hamburger.classList.remove('active');
       navMenu.classList.remove('active');
-      
-      // Reset hamburger bars
-      const bars = hamburger.querySelectorAll('.bar');
-      bars[0].style.transform = 'none';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = 'none';
     }
   });
 
@@ -59,23 +41,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
     if (activeLink) {
       activeLink.classList.add('active');
+      // If it's a dropdown item, also make its parent dropdown-toggle active
+      const parentDropdownToggle = activeLink.closest('.dropdown');
+      if (parentDropdownToggle) {
+        const toggleLink = parentDropdownToggle.querySelector('.dropdown-toggle');
+        if (toggleLink) {
+          toggleLink.classList.add('active');
+        }
+      }
     }
     
     // Close mobile menu
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
     
-    // Reset hamburger bars
-    const bars = hamburger.querySelectorAll('.bar');
-    bars[0].style.transform = 'none';
-    bars[1].style.opacity = '1';
-    bars[2].style.transform = 'none';
-    
-    // Scroll to top smoothly
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    // Scroll to top smoothly, accounting for fixed header
+    if (targetSection) {
+        const headerOffset = document.querySelector('.header').offsetHeight;
+        const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
   }
 
   // Add click listeners to navigation links
@@ -99,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Initialize home section display on page load
+  const initialSectionId = window.location.hash ? window.location.hash.substring(1) : 'home';
+  showSection(initialSectionId);
 
   // Quest button functionality
   const questButtons = document.querySelectorAll('.quest-button');
@@ -128,26 +122,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function performSearch(query) {
     const searchTerm = query.toLowerCase().trim();
-    
+    let foundResults = false;
+
     qaItems.forEach(item => {
-      const title = item.querySelector('h3').textContent.toLowerCase();
-      const content = item.querySelector('p').textContent.toLowerCase();
+      const titleEl = item.querySelector('.qa-question h4');
+      const contentEl = item.querySelector('.qa-answer p');
       
+      const title = titleEl ? titleEl.textContent.toLowerCase() : '';
+      const content = contentEl ? contentEl.textContent.toLowerCase() : '';
+      
+      resetHighlights(item); // Always reset highlights before applying new ones
+
       if (title.includes(searchTerm) || content.includes(searchTerm)) {
         item.style.display = 'block';
+        foundResults = true;
         
-        // Highlight search term
         if (searchTerm) {
           highlightSearchTerm(item, searchTerm);
         }
       } else {
-        item.style.display = searchTerm ? 'none' : 'block';
+        item.style.display = 'none';
       }
     });
 
-    // Show message if no results found
-    const visibleItems = Array.from(qaItems).filter(item => item.style.display !== 'none');
-    if (visibleItems.length === 0 && searchTerm) {
+    if (!foundResults && searchTerm) {
       showNoResultsMessage();
     } else {
       hideNoResultsMessage();
@@ -155,14 +153,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function highlightSearchTerm(element, term) {
-    const title = element.querySelector('h3');
-    const content = element.querySelector('p');
+    const titleEl = element.querySelector('.qa-question h4');
+    const contentEl = element.querySelector('.qa-answer p');
     
-    [title, content].forEach(el => {
-      const originalText = el.textContent;
-      const regex = new RegExp(`(${term})`, 'gi');
-      const highlightedText = originalText.replace(regex, '<mark style="background: #63b8ff; color: #1a202c; padding: 2px 4px; border-radius: 3px;">$1</mark>');
-      el.innerHTML = highlightedText;
+    [titleEl, contentEl].forEach(el => {
+      if (el) {
+        const originalText = el.textContent; // Get plain text content
+        const regex = new RegExp(`(${term})`, 'gi');
+        el.innerHTML = originalText.replace(regex, '<mark style="background: var(--accent-color); color: var(--background-primary); padding: 2px 4px; border-radius: 3px;">$1</mark>');
+      }
+    });
+  }
+
+  function resetHighlights(element) {
+    const titleEl = element.querySelector('.qa-question h4');
+    const contentEl = element.querySelector('.qa-answer p');
+    
+    [titleEl, contentEl].forEach(el => {
+      if (el) {
+        el.innerHTML = el.textContent; // Set innerHTML back to plain text content to remove <mark>
+      }
     });
   }
 
@@ -172,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
       noResultsMsg = document.createElement('div');
       noResultsMsg.className = 'no-results-message';
       noResultsMsg.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No questions found matching your search.</p>';
-      document.querySelector('.qa-content').appendChild(noResultsMsg);
+      document.querySelector('.qa-list').appendChild(noResultsMsg);
     }
     noResultsMsg.style.display = 'block';
   }
@@ -197,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   searchInput.addEventListener('input', function() {
     if (this.value === '') {
-      performSearch('');
+      performSearch(''); // Show all items and remove highlights
     }
   });
 
@@ -209,49 +219,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Smooth scrolling for anchor links
+  // Smooth scrolling for anchor links (for internal page anchors that don't trigger section change)
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
+    // Exclude nav links which are handled by showSection to avoid double handling
+    if (!anchor.classList.contains('nav-link') && !anchor.classList.contains('dropdown-item')) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          const headerOffset = document.querySelector('.header').offsetHeight;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
   });
 
   // Add scroll-based header background
-  let lastScrollY = window.scrollY;
   const header = document.querySelector('.header');
 
   window.addEventListener('scroll', function() {
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > 50) {
-      header.style.background = 'rgba(26, 32, 44, 0.98)';
+    if (window.scrollY > 50) {
+      header.style.backgroundColor = 'rgba(26, 32, 44, 0.98)';
       header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     } else {
-      header.style.background = 'rgba(26, 32, 44, 0.95)';
+      header.style.backgroundColor = 'rgba(26, 32, 44, 0.95)';
       header.style.boxShadow = 'none';
     }
-    
-    lastScrollY = currentScrollY;
   });
 
-  // Add loading animation for page
-  window.addEventListener('load', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-    
-    requestAnimationFrame(() => {
-      document.body.style.opacity = '1';
-    });
-  });
-
-  // Feature card animations
+  // Intersection Observer for animations
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -291,37 +294,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (existingRipple) {
       existingRipple.remove();
     }
-
     button.appendChild(circle);
-
-    // Add ripple styles
-    if (!document.querySelector('#ripple-styles')) {
-      const rippleStyles = document.createElement('style');
-      rippleStyles.id = 'ripple-styles';
-      rippleStyles.textContent = `
-        .ripple {
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.3);
-          transform: scale(0);
-          animation: ripple-animation 0.6s linear;
-          pointer-events: none;
-        }
-        
-        @keyframes ripple-animation {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-      `;
-      document.head.appendChild(rippleStyles);
-    }
   }
 
-  // Add ripple effect to all buttons
-  const buttons = document.querySelectorAll('button');
+  // Apply ripple effect to all relevant buttons
+  const buttons = document.querySelectorAll('button, .btn');
   buttons.forEach(button => {
+    if (getComputedStyle(button).position === 'static') {
+      button.style.position = 'relative';
+    }
+    button.style.overflow = 'hidden';
     button.addEventListener('click', createRipple);
   });
 
@@ -347,14 +329,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
       hamburger.classList.remove('active');
       navMenu.classList.remove('active');
-      
-      const bars = hamburger.querySelectorAll('.bar');
-      bars[0].style.transform = 'none';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = 'none';
     }
     
-    // Press '/' to focus search
+    // Press '/' to focus search input
     if (e.key === '/' && searchInput) {
       e.preventDefault();
       searchInput.focus();
@@ -363,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add focus management for accessibility
   const focusableElements = document.querySelectorAll(
-    'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+    'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
   );
 
   focusableElements.forEach(element => {
@@ -376,6 +353,4 @@ document.addEventListener('DOMContentLoaded', function() {
       this.style.outline = 'none';
     });
   });
-
-  console.log('HollowGrove website initialized successfully!');
 });
