@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HollowGrove</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h2>HollowGrove</h2>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#home" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#info" class="nav-link">Info</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Categories</a>
+          <div class="dropdown-menu">
+            <a href="#quests" class="dropdown-item">Quests</a>
+            <a href="#qa" class="dropdown-item">Q&A</a>
+          </div>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section id="home" class="section active">
+      <div class="container">
+        <div class="hero">
+          <h1 class="hero-title">Welcome to HollowGrove</h1>
+          <p class="hero-subtitle">Discover a world of mystery and adventure</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary">Get Started</button>
+            <button class="btn btn-secondary">Learn More</button>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">🌟</div>
+            <h3>Epic Quests</h3>
+            <p>Embark on thrilling adventures and discover hidden treasures</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Community Q&A</h3>
+            <p>Get answers to your questions from our knowledgeable community</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Interactive Experience</h3>
+            <p>Immerse yourself in our engaging and interactive platform</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="info" class="section">
+      <div class="container">
+        <h2 class="section-title">About HollowGrove</h2>
+        <div class="info-content">
+          <div class="info-text">
+            <h3>Our Story</h3>
+            <p>HollowGrove is a mystical realm where adventure meets community. Founded on the principles of exploration and discovery, we provide a platform for adventurers to connect, share experiences, and embark on epic journeys together.</p>
+
+            <h3>What We Offer</h3>
+            <ul class="info-list">
+              <li>Challenging quests and adventures</li>
+              <li>Active community support and Q&A</li>
+              <li>Regular updates and new content</li>
+              <li>Safe and welcoming environment</li>
+            </ul>
+          </div>
+          <div class="info-image">
+            <div class="placeholder-image">
+              <span>🏰</span>
+              <p>HollowGrove Castle</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quests" class="section">
+      <div class="container">
+        <h2 class="section-title">Quests</h2>
+        <div class="quest-grid">
+          <div class="quest-card">
+            <div class="quest-header">
+              <h3>The Lost Artifact</h3>
+              <span class="quest-difficulty easy">Easy</span>
+            </div>
+            <p class="quest-description">Discover the ancient artifact hidden deep within the Whispering Woods.</p>
+            <div class="quest-details">
+              <span class="quest-reward">Reward: 100 XP</span>
+              <span class="quest-time">Est. Time: 30 min</span>
+            </div>
+            <button class="btn btn-primary">Start Quest</button>
+          </div>
+
+          <div class="quest-card">
+            <div class="quest-header">
+              <h3>Shadow's Edge</h3>
+              <span class="quest-difficulty medium">Medium</span>
+            </div>
+            <p class="quest-description">Navigate the treacherous Shadow's Edge and confront the dark entities within.</p>
+            <div class="quest-details">
+              <span class="quest-reward">Reward: 250 XP</span>
+              <span class="quest-time">Est. Time: 1 hour</span>
+            </div>
+            <button class="btn btn-primary">Start Quest</button>
+          </div>
+
+          <div class="quest-card">
+            <div class="quest-header">
+              <h3>The Crystal Caverns</h3>
+              <span class="quest-difficulty hard">Hard</span>
+            </div>
+            <p class="quest-description">Venture into the mystical Crystal Caverns and unlock their ancient secrets.</p>
+            <div class="quest-details">
+              <span class="quest-reward">Reward: 500 XP</span>
+              <span class="quest-time">Est. Time: 2 hours</span>
+            </div>
+            <button class="btn btn-primary">Start Quest</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="qa" class="section">
+      <div class="container">
+        <h2 class="section-title">Q&A</h2>
+        <div class="qa-container">
+          <div class="qa-search">
+            <input type="text" placeholder="Search questions..." class="search-input">
+            <button class="btn btn-primary">Search</button>
+          </div>
+
+          <div class="qa-categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Gameplay</button>
+            <button class="category-btn">Quests</button>
+            <button class="category-btn">Technical</button>
+            <button class="category-btn">Community</button>
+          </div>
+
+          <div class="qa-list">
+            <div class="qa-item">
+              <div class="qa-question">
+                <h4>How do I start my first quest?</h4>
+                <span class="qa-category">Gameplay</span>
+              </div>
+              <div class="qa-answer">
+                <p>To start your first quest, navigate to the Quests section and select "The Lost Artifact" which is perfect for beginners. Click "Start Quest" and follow the guided instructions.</p>
+              </div>
+              <div class="qa-meta">
+                <span class="qa-votes">12 votes</span>
+                <span class="qa-author">By: GameMaster</span>
+              </div>
+            </div>
+
+            <div class="qa-item">
+              <div class="qa-question">
+                <h4>What rewards can I earn from quests?</h4>
+                <span class="qa-category">Quests</span>
+              </div>
+              <div class="qa-answer">
+                <p>Quests reward you with experience points (XP), in-game currency, and special items. Higher difficulty quests offer better rewards but require more skill and time to complete.</p>
+              </div>
+              <div class="qa-meta">
+                <span class="qa-votes">8 votes</span>
+                <span class="qa-author">By: QuestGuide</span>
+              </div>
+            </div>
+
+            <div class="qa-item">
+              <div class="qa-question">
+                <h4>How can I join the HollowGrove community?</h4>
+                <span class="qa-category">Community</span>
+              </div>
+              <div class="qa-answer">
+                <p>You can join our community by creating an account and participating in discussions, asking questions, and helping other players. We welcome adventurers of all skill levels!</p>
+              </div>
+              <div class="qa-meta">
+                <span class="qa-votes">15 votes</span>
+                <span class="qa-author">By: CommunityMod</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary ask-question-btn">Ask a Question</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>HollowGrove</h4>
+          <p>Your gateway to adventure and mystery.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#info">Info</a></li>
+            <li><a href="#quests">Quests</a></li>
+            <li><a href="#qa">Q&A</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@hollowgrove.com</p>
+          <p>Discord: HollowGrove#1234</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 HollowGrove. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
