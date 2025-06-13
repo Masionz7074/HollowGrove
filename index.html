@@ -3,159 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HollowGrove</title>
+  <title>HollowGrove - Home</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <h2>HollowGrove</h2>
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h2>HollowGrove</h2>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" data-section="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#info" class="nav-link" data-section="info">Info</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">Categories</a>
+            <div class="dropdown-menu">
+              <a href="#quests" class="dropdown-item" data-section="quests">Quests</a>
+              <a href="#qa" class="dropdown-item" data-section="qa">Q&A</a>
+            </div>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
       </div>
-      <ul class="nav-menu">
-        <li class="nav-item">
-          <a href="#home" class="nav-link active">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#info" class="nav-link">Info</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle">Categories</a>
-          <div class="dropdown-menu">
-            <a href="#quests" class="dropdown-item">Quests</a>
-            <a href="#qa" class="dropdown-item">Q&A</a>
-          </div>
-        </li>
-      </ul>
-      <div class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <main class="main-content">
-    <section id="home" class="section active">
-      <div class="container">
-        <div class="hero">
-          <h1 class="hero-title">Welcome to HollowGrove</h1>
-          <p class="hero-subtitle">Discover a world of mystery and adventure</p>
-          <div class="hero-buttons">
-            <button class="btn btn-primary">Get Started</button>
-            <button class="btn btn-secondary">Learn More</button>
-          </div>
+    <section id="home" class="content-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Welcome to HollowGrove</h1>
+          <p>Discover the mysteries that lie within the grove</p>
+          <button class="cta-button">Get Started</button>
         </div>
-        <div class="features">
-          <div class="feature-card">
-            <div class="feature-icon">🌟</div>
-            <h3>Epic Quests</h3>
-            <p>Embark on thrilling adventures and discover hidden treasures</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3>Community Q&A</h3>
-            <p>Get answers to your questions from our knowledgeable community</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🎮</div>
-            <h3>Interactive Experience</h3>
-            <p>Immerse yourself in our engaging and interactive platform</p>
-          </div>
+      </div>
+      <div class="features">
+        <div class="feature-card">
+          <h3>Explore</h3>
+          <p>Embark on epic quests and uncover hidden secrets</p>
+        </div>
+        <div class="feature-card">
+          <h3>Learn</h3>
+          <p>Get answers to your questions in our comprehensive Q&A section</p>
+        </div>
+        <div class="feature-card">
+          <h3>Connect</h3>
+          <p>Join a community of fellow explorers and adventurers</p>
         </div>
       </div>
     </section>
 
-    <section id="info" class="section">
-      <div class="container">
-        <h2 class="section-title">About HollowGrove</h2>
+    <section id="info" class="content-section">
+      <div class="info-container">
+        <h2>About HollowGrove</h2>
         <div class="info-content">
           <div class="info-text">
-            <h3>Our Story</h3>
-            <p>HollowGrove is a mystical realm where adventure meets community. Founded on the principles of exploration and discovery, we provide a platform for adventurers to connect, share experiences, and embark on epic journeys together.</p>
-
-            <h3>What We Offer</h3>
+            <p>HollowGrove is a mysterious realm where adventure awaits at every turn. Our platform serves as your gateway to exploration, knowledge, and community.</p>
+            <p>Whether you're seeking challenging quests, looking for answers to complex questions, or simply want to connect with like-minded individuals, HollowGrove provides the tools and resources you need.</p>
             <ul class="info-list">
-              <li>Challenging quests and adventures</li>
-              <li>Active community support and Q&A</li>
+              <li>Interactive quest system</li>
+              <li>Comprehensive Q&A database</li>
+              <li>Community-driven content</li>
               <li>Regular updates and new content</li>
-              <li>Safe and welcoming environment</li>
             </ul>
           </div>
           <div class="info-image">
             <div class="placeholder-image">
-              <span>🏰</span>
-              <p>HollowGrove Castle</p>
+              <span>🌲</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="quests" class="section">
-      <div class="container">
-        <h2 class="section-title">Quests</h2>
+    <section id="quests" class="content-section">
+      <div class="quests-container">
+        <h2>Quests</h2>
         <div class="quest-grid">
           <div class="quest-card">
-            <div class="quest-header">
-              <h3>The Lost Artifact</h3>
-              <span class="quest-difficulty easy">Easy</span>
-            </div>
-            <p class="quest-description">Discover the ancient artifact hidden deep within the Whispering Woods.</p>
-            <div class="quest-details">
-              <span class="quest-reward">Reward: 100 XP</span>
-              <span class="quest-time">Est. Time: 30 min</span>
-            </div>
-            <button class="btn btn-primary">Start Quest</button>
+            <h3>The Ancient Tree</h3>
+            <p class="quest-difficulty">Difficulty: Beginner</p>
+            <p>Discover the secrets of the oldest tree in HollowGrove. This introductory quest will teach you the basics of exploration.</p>
+            <button class="quest-button">Start Quest</button>
           </div>
-
           <div class="quest-card">
-            <div class="quest-header">
-              <h3>Shadow's Edge</h3>
-              <span class="quest-difficulty medium">Medium</span>
-            </div>
-            <p class="quest-description">Navigate the treacherous Shadow's Edge and confront the dark entities within.</p>
-            <div class="quest-details">
-              <span class="quest-reward">Reward: 250 XP</span>
-              <span class="quest-time">Est. Time: 1 hour</span>
-            </div>
-            <button class="btn btn-primary">Start Quest</button>
+            <h3>Shadow's Edge</h3>
+            <p class="quest-difficulty">Difficulty: Intermediate</p>
+            <p>Navigate through the darker regions of the grove where shadows hold mysterious powers.</p>
+            <button class="quest-button">Start Quest</button>
           </div>
-
           <div class="quest-card">
-            <div class="quest-header">
-              <h3>The Crystal Caverns</h3>
-              <span class="quest-difficulty hard">Hard</span>
-            </div>
-            <p class="quest-description">Venture into the mystical Crystal Caverns and unlock their ancient secrets.</p>
-            <div class="quest-details">
-              <span class="quest-reward">Reward: 500 XP</span>
-              <span class="quest-time">Est. Time: 2 hours</span>
-            </div>
-            <button class="btn btn-primary">Start Quest</button>
+            <h3>Grove Guardian</h3>
+            <p class="quest-difficulty">Difficulty: Advanced</p>
+            <p>Face the ultimate challenge and prove yourself worthy of becoming a Grove Guardian.</p>
+            <button class="quest-button">Start Quest</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="qa" class="section">
-      <div class="container">
-        <h2 class="section-title">Q&A</h2>
-        <div class="qa-container">
-          <div class="qa-search">
-            <input type="text" placeholder="Search questions..." class="search-input">
-            <button class="btn btn-primary">Search</button>
+    <section id="qa" class="content-section">
+      <div class="qa-container">
+        <h2>Q&A</h2>
+        <div class="qa-search">
+          <input type="text" placeholder="Search questions..." class="search-input">
+          <button class="search-button">Search</button>
+        </div>
+        <div class="qa-content">
+          <div class="qa-item">
+            <h3>How do I start my first quest?</h3>
+            <p>To begin your adventure in HollowGrove, simply navigate to the Quests section and select "The Ancient Tree" quest. This beginner-friendly quest will introduce you to the basic mechanics and help you get familiar with the platform.</p>
           </div>
-
-          <div class="qa-categories">
-            <button class="category-btn active">All</button>
-            <button class="category-btn">Gameplay</button>
-            <button class="category-btn">Quests</button>
-            <button class="category-btn">Technical</button>
-            <button class="category-btn">Community</button>
+          <div class="qa-item">
+            <h3>Can I create my own quests?</h3>
+            <p>Yes! Advanced users can create custom quests for the community. You'll need to reach Grove Guardian status first, which requires completing several advanced quests and demonstrating your expertise.</p>
           </div>
+          <div class="qa-item">
+            <h3>Is there a mobile app available?</h3>
+            <p>Currently, HollowGrove is optimized for web browsers on both desktop and mobile devices. We're working on a dedicated mobile app that will be released in the near future.</p>
+          </div>
+          <div class="qa-item">
+            <h3>How can I contact support?</h3>
+            <p>If you need assistance, you can reach out to our support team through the contact form in the Info section, or join our community Discord server for real-time help from other users and moderators.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 HollowGrove. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+              
           <div class="qa-list">
             <div class="qa-item">
               <div class="qa-question">
@@ -170,7 +170,7 @@
                 <span class="qa-author">By: GameMaster</span>
               </div>
             </div>
-
+                
             <div class="qa-item">
               <div class="qa-question">
                 <h4>What rewards can I earn from quests?</h4>
@@ -184,7 +184,7 @@
                 <span class="qa-author">By: QuestGuide</span>
               </div>
             </div>
-
+                
             <div class="qa-item">
               <div class="qa-question">
                 <h4>How can I join the HollowGrove community?</h4>
@@ -199,7 +199,7 @@
               </div>
             </div>
           </div>
-
+              
           <button class="btn btn-secondary ask-question-btn">Ask a Question</button>
         </div>
       </div>
